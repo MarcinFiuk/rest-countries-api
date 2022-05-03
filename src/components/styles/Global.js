@@ -19,6 +19,12 @@ body{
     margin-inline:auto;
     background-color:pink;
 }
+h1{
+    font-weight:var(--fontWeight-800);
+    font-size: clamp(0.875rem, 0.65rem + 0.94vw, 1.5rem);;
+    line-height: 1.125rem;
+
+}
 
 h3{
     font-size:1.125rem;

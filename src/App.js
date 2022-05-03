@@ -5,6 +5,7 @@ import useAxios from './hooks/useAxios';
 import Countries from './components/Countries';
 import Spinner from './components/Spinner';
 import Error from './components/Error';
+import Header from './components/Header';
 
 function App() {
     const [numberCountries, setNumberCountries] = useState(8);
@@ -26,12 +27,7 @@ function App() {
 
     return (
         <>
-            <Header>
-                <h1>Where in the world?</h1>
-                <button>
-                    <span>icon</span>Dark Mode
-                </button>
-            </Header>
+            <Header />
             <MainStyled>
                 {isLoading && <Spinner />}
                 {error && <Error errorInfo={error} />}
@@ -43,8 +39,6 @@ function App() {
         </>
     );
 }
-
-const Header = styled.header``;
 
 const MainStyled = styled.main`
     display: flex;
