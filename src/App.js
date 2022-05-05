@@ -6,10 +6,12 @@ import Countries from './components/Countries';
 import Spinner from './components/Spinner';
 import Error from './components/Error';
 import Header from './components/Header';
+import SearchBar from './components/SearchBar';
 
 function App() {
-    const [numberCountries, setNumberCountries] = useState(8);
     const [countriesToDisplay, setCountriesToDisplay] = useState([]);
+    const [filterByRegion, setFilterByRegion] = useState('');
+    const [filterByCountry, setFilterByCountry] = useState('');
     const { data, error, isLoading } = useAxios(
         'https://restcountries.com/v2',
         '/all',
@@ -17,12 +19,33 @@ function App() {
     );
 
     useEffect(() => {
-        const pieceOfData = data.slice(0, numberCountries);
-        setCountriesToDisplay(pieceOfData);
-    }, [numberCountries, data]);
+        let dataToDisplay = data;
 
-    const displayMoreCountriesHandler = () => {
-        setNumberCountries((prevNr) => prevNr + 8);
+        if (filterByRegion) {
+            dataToDisplay = dataToDisplay.filter(
+                (country) =>
+                    country.region.toLowerCase() ===
+                    filterByRegion.toLowerCase()
+            );
+        }
+
+        if (filterByCountry) {
+            dataToDisplay = dataToDisplay.filter((country) => {
+                console.log(filterByCountry);
+                console.log(country.name);
+                return country.name.toLowerCase().includes(filterByCountry);
+            });
+        }
+
+        setCountriesToDisplay(dataToDisplay);
+    }, [data, filterByRegion, filterByCountry]);
+
+    const getRegionHandler = (region) => {
+        setFilterByRegion(region);
+    };
+
+    const getCountryName = (country) => {
+        setFilterByCountry(country);
     };
 
     return (
@@ -31,10 +54,11 @@ function App() {
             <MainStyled>
                 {isLoading && <Spinner />}
                 {error && <Error errorInfo={error} />}
+                <SearchBar
+                    getRegion={(region) => getRegionHandler(region)}
+                    getCountry={(country) => getCountryName(country)}
+                />
                 <Countries countriesSlice={countriesToDisplay} />
-                <LoadMoreButton onClick={displayMoreCountriesHandler}>
-                    Load More
-                </LoadMoreButton>
             </MainStyled>
         </>
     );
@@ -44,15 +68,7 @@ const MainStyled = styled.main`
     display: flex;
     flex-direction: column;
     background-color: var(--veryLightGray);
-`;
-
-const LoadMoreButton = styled.button`
-    margin: 0 auto;
-    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
-    border: none;
-    border-radius: 5px;
-    background-color: var(--white);
-    //NOTE: add width and height
+    padding-inline: clamp(3.5rem, 10vw, 5rem);
 `;
 
 export default App;

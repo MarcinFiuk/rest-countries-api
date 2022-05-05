@@ -12,6 +12,7 @@ html{
 --darkGray: hsl(0, 0%, 52%);// (Light Mode Input)
 --veryLightGray: hsl(0, 0%, 98%);// (Light Mode Background)
 --white: hsl(0, 0%, 100%);// (Dark Mode Text & Light Mode Elements)
+--lightGray:hsl(0,0%,77%);//placeholder Light Mode
 }
 body{
     font-family: 'Nunito Sans', sans-serif;
