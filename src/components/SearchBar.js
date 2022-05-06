@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai'; //NOTE:: use it inside input->placeholder
+import debounce from 'debounce';
 
 function SearchBar({ getRegion, getCountry }) {
     const setRegion = (e) => {
         getRegion(e.target.value);
     };
 
-    const setCountry = (e) => {
+    const setCountry = debounce((e) => {
         getCountry(e.target.value);
-    };
+    }, 250);
 
     return (
         <Wrapper>
