@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import useAxios from './hooks/useAxios';
@@ -9,40 +9,41 @@ import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 
 function App() {
-    const [countriesToDisplay, setCountriesToDisplay] = useState([]);
     const [filterByRegion, setFilterByRegion] = useState('');
     const [filterByCountry, setFilterByCountry] = useState('');
     const { data, error, isLoading } = useAxios(
         'https://restcountries.com/v2',
         '/all',
-        '?fields=flags,name,population,region,capital'
+        { fields: 'flags,name,population,region,capital' }
     );
 
-    useEffect(() => {
-        let dataToDisplay = data;
+    const getCountriesToDisplay = () => {
+        let result = data;
 
         if (filterByRegion) {
-            dataToDisplay = dataToDisplay.filter(
-                (country) =>
-                    country.region.toLowerCase() ===
-                    filterByRegion.toLowerCase()
-            );
+          result = result.filter(
+              (country) =>
+                  country.region.toLowerCase() ===
+                  filterByRegion.toLowerCase()
+          );
         }
 
         if (filterByCountry) {
-            dataToDisplay = dataToDisplay.filter((country) => {
+            result = result.filter((country) => {
                 return country.name.toLowerCase().includes(filterByCountry);
             });
         }
 
-        setCountriesToDisplay(dataToDisplay);
-    }, [data, filterByRegion, filterByCountry]);
+        return result;
+    };
+
+    const countriesToDisplay = getCountriesToDisplay();
 
     const getRegionHandler = (region) => {
         setFilterByRegion(region);
     };
 
-    const getCountryName = (country) => {
+    const getCountryHandler = (country) => {
         setFilterByCountry(country);
     };
 
@@ -53,8 +54,8 @@ function App() {
                 {isLoading && <Spinner />}
                 {error && <Error errorInfo={error} />}
                 <SearchBar
-                    getRegion={(region) => getRegionHandler(region)}
-                    getCountry={(country) => getCountryName(country)}
+                    getRegion={getRegionHandler}
+                    getCountry={getCountryHandler}
                 />
                 <Countries countriesSlice={countriesToDisplay} />
             </MainStyled>
