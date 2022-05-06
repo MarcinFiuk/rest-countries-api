@@ -12,11 +12,14 @@ function SearchBar({ getRegion, getCountry }) {
 
     return (
         <Wrapper>
-            <Input
-                type='search'
-                placeholder='Search for a country…'
-                onChange={setCountry}
-            />
+            <PositioningElement>
+                <Input
+                    type='search'
+                    placeholder='Search for a country…'
+                    onChange={setCountry}
+                />
+                <SearchIconStyled />
+            </PositioningElement>
             <Select onChange={setRegion}>
                 <option value=''>Filter By Region</option>
                 <option value='africa'>Africa</option>
@@ -34,22 +37,44 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: var(--fontWeight-400);
+    gap: 40px;
+    margin-top: clamp(1.5rem, 0.97rem + 2.3vw, 3rem);
 `;
 
-const Input = styled.input`
+const PositioningElement = styled.div`
+    position: relative;
     max-width: 480px;
     width: 100%;
     box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.06);
     border-radius: 5px;
+`;
+
+const Input = styled.input`
+    width: 100%;
     border: none;
     padding-block: clamp(14px, 1.5vw, 18px);
-    padding-inline: 32px;
+    padding-left: 70px;
+    padding-right: 28px;
     color: var(--lightGray);
     background: var(--white);
-    vertical-align: middle;
     font-weight: var(--fontWeight-400);
+    color: var(--veryDarkBlue-2);
+
+    &:placeholder {
+        color: var(--lightGray);
+    }
+`;
+
+const SearchIconStyled = styled(AiOutlineSearch)`
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 28px;
+    color: var(--veryDarkBlue-2);
 `;
 
 const Select = styled.select`
@@ -61,7 +86,6 @@ const Select = styled.select`
     padding-block: clamp(14px, 1.5vw, 18px);
     padding-inline: 24px;
     color: var(--veryDarkBlue-2);
-    vertical-align: middle;
     font-weight: var(--fontWeight-400);
 `;
 

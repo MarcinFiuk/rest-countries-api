@@ -31,8 +31,6 @@ function App() {
 
         if (filterByCountry) {
             dataToDisplay = dataToDisplay.filter((country) => {
-                console.log(filterByCountry);
-                console.log(country.name);
                 return country.name.toLowerCase().includes(filterByCountry);
             });
         }
