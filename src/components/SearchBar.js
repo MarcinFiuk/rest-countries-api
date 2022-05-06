@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai'; //NOTE:: use it inside input->placeholder
-import debounce from 'debounce';
+// import debounce from 'debounce';
+
+function debounce(fn, delay) {
+    let timerId;
+
+    return function (...args) {
+        if (timerId) {
+            clearTimeout(timerId);
+        }
+
+        timerId = setTimeout(() => {
+            fn(...args);
+        }, delay);
+    };
+}
 
 function SearchBar({ getRegion, getCountry }) {
     const setRegion = (e) => {
