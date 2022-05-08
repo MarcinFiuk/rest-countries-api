@@ -58,12 +58,12 @@ const Input = styled.input`
     padding-left: 70px;
     padding-right: 28px;
     color: var(--lightGray);
-    background: var(--white);
+    background: var(--elementColor);
     font-weight: var(--fontWeight-400);
-    color: var(--veryDarkBlue-2);
+    color: var(--inputColor);
 
-    &:placeholder {
-        color: var(--lightGray);
+    &::placeholder {
+        color: var(--inputColor);
     }
 `;
 
@@ -75,17 +75,18 @@ const SearchIconStyled = styled(AiOutlineSearch)`
     transform: translateY(-50%);
     left: 28px;
     color: var(--veryDarkBlue-2);
+    color: var(--textColor);
 `;
 
 const Select = styled.select`
     width: 200px;
-    background: var(--white);
+    background: var(----elementColor);
     box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
     border-radius: 5px;
     border: none;
     padding-block: clamp(14px, 1.5vw, 18px);
     padding-inline: 24px;
-    color: var(--veryDarkBlue-2);
+    color: var(--textColor);
     font-weight: var(--fontWeight-400);
 `;
 

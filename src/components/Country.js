@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     max-width: 20rem;
     box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
     border-radius: 5px;
-    background-color: var(--white);
+    background-color: var(----elementColor);
     overflow: hidden;
 `;
 
