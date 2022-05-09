@@ -1,12 +1,10 @@
 function Error({ errorInfo }) {
-    const {
-        response: { status },
-    } = errorInfo;
-    console.log(errorInfo);
+    const statusToDisplay = errorInfo.response?.status;
+
     return (
         <div>
             <p>I'm sorry but something went wrong.</p>
-            <p>Code:{status}</p>
+            <p>Code:{statusToDisplay}</p>
             <button>Go back</button>
         </div>
     );

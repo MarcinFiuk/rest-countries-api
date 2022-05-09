@@ -1,27 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-function useAxios(url, endpoint = '/all', fields = '') {
+function useAxios(baseURL, endpoint = '/all', query) {
     const [data, setData] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const queryRef = useRef();
+    queryRef.current = query;
+
     useEffect(() => {
+        const controller = new AbortController();
+
         const fetchData = async () => {
             setIsLoading(true);
+            setError('');
 
             try {
-                const res = await axios.get(url + endpoint + fields);
+                const res = await axios.get(endpoint, {
+                    signal: controller.signal,
+                    baseURL,
+                    params: queryRef,
+                });
                 setData(res.data);
                 setIsLoading(false);
             } catch (error) {
+                console.log(error);
+                if (error.name === 'CanceledError') {
+                    return;
+                }
                 setError(error);
                 setIsLoading(false);
             }
         };
 
         fetchData();
-    }, [url, endpoint, fields]);
+
+        return () => {
+            controller.abort();
+        };
+    }, [baseURL, endpoint]);
 
     return { data, error, isLoading };
 }

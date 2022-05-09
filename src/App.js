@@ -11,21 +11,20 @@ import { Reset } from './components/styles/Reset';
 import { GlobalStyle } from './components/styles/Global';
 
 function App() {
-    const [countriesToDisplay, setCountriesToDisplay] = useState([]);
     const [filterByRegion, setFilterByRegion] = useState('');
     const [filterByCountry, setFilterByCountry] = useState('');
     const [colorTheme, setColorTheme] = useState('light');
     const { data, error, isLoading } = useAxios(
         'https://restcountries.com/v2',
         '/all',
-        '?fields=flags,name,population,region,capital'
+        { fields: 'flags,name,population,region,capital' }
     );
 
-    useEffect(() => {
-        let dataToDisplay = data;
+    const updatedData = () => {
+        let countries = data;
 
         if (filterByRegion) {
-            dataToDisplay = dataToDisplay.filter(
+            countries = countries.filter(
                 (country) =>
                     country.region.toLowerCase() ===
                     filterByRegion.toLowerCase()
@@ -33,13 +32,15 @@ function App() {
         }
 
         if (filterByCountry) {
-            dataToDisplay = dataToDisplay.filter((country) => {
+            countries = countries.filter((country) => {
                 return country.name.toLowerCase().includes(filterByCountry);
             });
         }
 
-        setCountriesToDisplay(dataToDisplay);
-    }, [data, filterByRegion, filterByCountry]);
+        return countries;
+    };
+
+    const countriesToDisplay = updatedData();
 
     const getRegionHandler = (region) => {
         setFilterByRegion(region);
