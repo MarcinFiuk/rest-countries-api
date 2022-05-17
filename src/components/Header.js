@@ -37,7 +37,7 @@ const HeaderStyled = styled.header`
         2.18rem + -0.75vw,
         2rem
     ); //reverse padding - mobile bigger that desktop
-    padding-inline: clamp(3.5rem, 10vw, 5rem);
+    padding-inline: clamp(1rem, -0.45rem + 6vw, 5rem);
     transition: background-color 0.3s linear;
 
     button {

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 function Country({ country }) {
     const { flags, name, population, region, capital } = country || {};
+    const { png } = flags;
 
     return (
         <Wrapper>
             <FlagWrapper>
-                <img src={flags.png} alt={'flag of ' + name} />
+                <img src={png} alt={'flag of ' + name} />
             </FlagWrapper>
             <TextWrapper>
                 <h3>{name}</h3>
@@ -29,13 +30,14 @@ const Wrapper = styled.div`
     max-width: 20rem;
     box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
     border-radius: 5px;
-    background-color: var(----elementColor);
+    background-color: var(--elementColor);
     overflow: hidden;
 `;
 
 const FlagWrapper = styled.div`
+    max-width: 246px;
     width: 100%;
-    aspect-ratio: 2/1.21;
+    aspect-ratio: 246/160;
 
     img {
         width: 100%;
@@ -52,6 +54,9 @@ const TextWrapper = styled.div`
     }
 
     p {
+        font-weight: var(--fontWeight-300);
+        font-size: 0.875rem;
+        line-height: 1rem;
         margin-bottom: 0.5rem;
 
         &:last-of-type {

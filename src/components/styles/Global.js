@@ -24,13 +24,13 @@ export const GlobalStyle = createGlobalStyle`
 /* --svgFill :{({ colorMode }) => */
     /* colorMode === 'light' ? 'transparent' : 'hsl(0, 0%, 100%)'}; */
 //_____________
---darkBlue: hsl(209, 23%, 22%);// (Dark Mode Elements)
---veryDarkBlue-1 : hsl(207, 26%, 17%); //(Dark Mode Background)
+/* --darkBlue: hsl(209, 23%, 22%);// (Dark Mode Elements) */
+/* --veryDarkBlue-1 : hsl(207, 26%, 17%); //(Dark Mode Background)
 --veryDarkBlue-2: hsl(200, 15%, 8%); // (Light Mode Text)!!!!!!!!!!!!
 --darkGray: hsl(0, 0%, 52%);// (Light Mode Input)
 --veryLightGray: hsl(0, 0%, 98%);// (Light Mode Background)
 --white: hsl(0, 0%, 100%);// (Dark Mode Text & Light Mode Elements)
---lightGray:hsl(0,0%,77%);//placeholder Light Mode
+--lightGray:hsl(0,0%,77%);//placeholder Light Mode */
 };
 
 body{
@@ -38,7 +38,12 @@ body{
     max-width:1440px;
     margin-inline:auto;
     color: var(--textColor);
+    background-color: var(--backgroundColor);
     transition: all 0.3s linear;
+}
+
+#root{
+    height:100vh;
 }
 
 h1{
@@ -54,9 +59,4 @@ h3{
     line-height: 1.625rem;
 }
 
-p{
-    font-weight: var(--fontWeight-300);
-    font-size: 0.875rem;
-    line-height: 1rem;
-}
 `;

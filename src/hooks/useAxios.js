@@ -20,12 +20,11 @@ function useAxios(baseURL, endpoint = '/all', query) {
                 const res = await axios.get(endpoint, {
                     signal: controller.signal,
                     baseURL,
-                    params: queryRef,
+                    params: queryRef.current,
                 });
                 setData(res.data);
                 setIsLoading(false);
             } catch (error) {
-                console.log(error);
                 if (error.name === 'CanceledError') {
                     return;
                 }
