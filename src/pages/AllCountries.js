@@ -16,6 +16,10 @@ function AllCountries({ getData }) {
         { fields: 'flags,name,population,region,capital,alpha3Code' }
     );
 
+    useEffect(() => {
+        getData(data);
+    }, [data, getData]);
+
     const getRegionHandler = (region) => {
         setFilterByRegion(region);
     };

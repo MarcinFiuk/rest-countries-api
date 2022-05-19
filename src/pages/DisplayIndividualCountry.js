@@ -221,7 +221,6 @@ const CountryWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    /* justify-content: space-between; */
     gap: 44px;
     margin-top: clamp(4rem, 3.6rem + 1.8vw, 5rem);
 
@@ -243,6 +242,10 @@ const FlagWrapper = styled.div`
     width: 100%;
     aspect-ratio: 320/229;
     flex: 1;
+    background: #808080;
+    box-shadow: 0px 0px 14px 4px hsla(0, 0%, 0%, 0.03);
+    border-radius: 10px;
+    overflow: hidden;
 
     img {
         width: 100%;

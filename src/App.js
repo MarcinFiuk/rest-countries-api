@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 
@@ -26,10 +26,10 @@ function App() {
         return alphaNameArr;
     };
 
-    const getFullData = (data) => {
+    const memoizedCallback = useCallback((data) => {
         const newArr = arrOfAlpha3CodeAndName(data);
         setAlphaNameArr(newArr);
-    };
+    }, []);
     // const arrCodeName = arrOfAlpha3CodeAndName(data);
 
     return (
@@ -44,7 +44,7 @@ function App() {
                 <Routes>
                     <Route
                         path='/'
-                        element={<AllCountries getData={getFullData} />}
+                        element={<AllCountries getData={memoizedCallback} />}
                     />
                     <Route
                         path=':name'
