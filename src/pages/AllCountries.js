@@ -1,88 +1,78 @@
-import { useState, useEffect } from 'react';
-import Fuse from 'fuse.js';
+import { useContext, useState } from "react";
+import Fuse from "fuse.js";
 
-import useAxios from './../hooks/useAxios';
-import Spinner from './../components/Spinner';
-import Error from './../components/Error';
-import SearchBar from './../components/SearchBar';
-import Countries from './../components/Countries';
+import Spinner from "./../components/Spinner";
+import Error from "./../components/Error";
+import SearchBar from "./../components/SearchBar";
+import Countries from "./../components/Countries";
+import { countriesContext } from "../contexts/countries";
 
-function AllCountries({ getData }) {
-    const [filterByRegion, setFilterByRegion] = useState('');
-    const [filterByCountry, setFilterByCountry] = useState('');
-    const { data, error, isLoading } = useAxios(
-        'https://restcountries.com/v2',
-        '/all',
-        { fields: 'flags,name,population,region,capital,alpha3Code' }
-    );
+function AllCountries() {
+  const [filterByRegion, setFilterByRegion] = useState("");
+  const [filterByCountry, setFilterByCountry] = useState("");
+  const { data, isLoading, error } = useContext(countriesContext);
 
-    useEffect(() => {
-        getData(data);
-    }, [data, getData]);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-    const getRegionHandler = (region) => {
-        setFilterByRegion(region);
-    };
+  if (error) {
+    return <Error errorInfo={error} />;
+  }
 
-    const getCountryName = (country) => {
-        setFilterByCountry(country);
-    };
+  const getRegionHandler = (region) => {
+    setFilterByRegion(region);
+  };
 
-    const mapFuseArrToOutputArr = (arr) => {
-        const newArr = arr.map((element) => element.item);
+  const getCountryName = (country) => {
+    setFilterByCountry(country);
+  };
 
-        return newArr;
-    };
+  const mapFuseArrToOutputArr = (arr) => {
+    const newArr = arr.map((element) => element.item);
 
-    const updatedData = () => {
-        let countries = data;
+    return newArr;
+  };
 
-        if (filterByRegion) {
-            countries = countries.filter(
-                (country) =>
-                    country.region.toLowerCase() ===
-                    filterByRegion.toLowerCase()
-            );
-        }
+  const updatedData = () => {
+    let countries = data.countries;
 
-        if (filterByCountry) {
-            const options = {
-                threshold: 0.3,
-                keys: ['name'],
-            };
+    if (filterByRegion) {
+      countries = countries.filter(
+        (country) =>
+          country.region.toLowerCase() === filterByRegion.toLowerCase()
+      );
+    }
 
-            const fuse = new Fuse(countries, options);
+    if (filterByCountry) {
+      const options = {
+        threshold: 0.3,
+        keys: ["name"],
+      };
 
-            const fuseResult = fuse.search(filterByCountry);
+      const fuse = new Fuse(countries, options);
 
-            countries = mapFuseArrToOutputArr(fuseResult);
-        }
+      const fuseResult = fuse.search(filterByCountry);
 
-        return countries;
-    };
+      countries = mapFuseArrToOutputArr(fuseResult);
+    }
 
-    const countriesToDisplay = updatedData();
+    return countries;
+  };
 
-    return (
-        <>
-            {isLoading && <Spinner />}
-            {error && <Error errorInfo={error} />}
-            {!error && !isLoading && (
-                <>
-                    <SearchBar
-                        getRegion={getRegionHandler}
-                        getCountry={getCountryName}
-                    />
-                    {countriesToDisplay.length > 0 && (
-                        <Countries countriesSlice={countriesToDisplay} />
-                    )}
-                    {countriesToDisplay.length === 0 && (
-                        <p>No country match search parameter</p>
-                    )}
-                </>
-            )}
-        </>
-    );
+  const countriesToDisplay = updatedData();
+
+  return (
+    <>
+      <SearchBar getRegion={getRegionHandler} getCountry={getCountryName} />
+      {countriesToDisplay.length > 0 && (
+        <Countries countriesSlice={countriesToDisplay} />
+      )}
+      {countriesToDisplay.length === 0 && (
+        <p>No country match search parameter</p>
+      )}
+    </>
+  );
 }
 
 export default AllCountries;

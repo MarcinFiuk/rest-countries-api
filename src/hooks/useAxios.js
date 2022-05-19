@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-function useAxios(baseURL, endpoint = '/all', query) {
-    const [data, setData] = useState([]);
+function useAxios(baseURL, endpoint, query, formatter = (d) => d) {
+    const [data, setData] = useState(null);
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const queryRef = useRef();
     queryRef.current = query;
@@ -22,10 +22,10 @@ function useAxios(baseURL, endpoint = '/all', query) {
                     baseURL,
                     params: queryRef.current,
                 });
-                setData(res.data);
+                setData(formatter(res.data));
                 setIsLoading(false);
-            } catch (error) {
-                if (error.name === 'CanceledError') {
+            } catch (err) {
+                if (err.name === 'CanceledError') {
                     return;
                 }
                 setError(error);
