@@ -55,6 +55,7 @@ const Wrapper = styled.div`
     font-weight: var(--fontWeight-400);
     gap: 40px;
     margin-top: clamp(1.5rem, 0.97rem + 2.3vw, 3rem);
+    padding-inline: clamp(1rem, -0.45rem + 6vw, 5rem);
 `;
 
 const PositioningElement = styled.div`

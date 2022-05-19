@@ -25,7 +25,7 @@ const SpinnerStyled = styled.div`
         margin: 8px;
         border-radius: 50%;
         border: 7px solid red;
-        border-color: var(--veryDarkBlue-1) transparent;
+        border-color: var(--textColor) transparent;
         animation: ${AAA} 1.2s linear infinite;
     }
 `;

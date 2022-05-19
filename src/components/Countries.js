@@ -14,9 +14,11 @@ function Countries({ countriesSlice }) {
 
 const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
-    gap: 4.6875rem;
+    grid-template-columns: repeat(auto-fit, 246px);
+    justify-content: center;
+    gap: 6.1rem;
     padding-block: clamp(2rem, 5vw, 3rem);
+    padding-inline: clamp(1rem, -0.45rem + 6vw, 5rem);
 `;
 
 const LinkStyled = styled(Link)`

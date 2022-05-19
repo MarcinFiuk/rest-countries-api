@@ -12,7 +12,8 @@ function Country({ country }) {
             <TextWrapper>
                 <h3>{name}</h3>
                 <p>
-                    <BoldWrapper>Population:</BoldWrapper> {population}
+                    <BoldWrapper>Population:</BoldWrapper>{' '}
+                    {population.toLocaleString()}
                 </p>
                 <p>
                     <BoldWrapper>Region:</BoldWrapper> {region}
