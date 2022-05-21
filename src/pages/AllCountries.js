@@ -1,24 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import Fuse from 'fuse.js';
 
-import useAxios from './../hooks/useAxios';
 import Spinner from './../components/Spinner';
 import Error from './../components/Error';
 import SearchBar from './../components/SearchBar';
 import Countries from './../components/Countries';
+import { FlagsContext } from './../context/FlagsContext';
 
-function AllCountries({ getData }) {
+function AllCountries() {
     const [filterByRegion, setFilterByRegion] = useState('');
     const [filterByCountry, setFilterByCountry] = useState('');
-    const { data, error, isLoading } = useAxios(
-        'https://restcountries.com/v2',
-        '/all',
-        { fields: 'flags,name,population,region,capital,alpha3Code' }
-    );
-
-    useEffect(() => {
-        getData(data);
-    }, [data, getData]);
+    const { data, error, isLoading } = useContext(FlagsContext);
 
     const getRegionHandler = (region) => {
         setFilterByRegion(region);
@@ -35,7 +27,7 @@ function AllCountries({ getData }) {
     };
 
     const updatedData = () => {
-        let countries = data;
+        let countries = data.data;
 
         if (filterByRegion) {
             countries = countries.filter(

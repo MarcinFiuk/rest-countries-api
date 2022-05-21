@@ -7,33 +7,17 @@ import AllCountries from './pages/AllCountries';
 import DisplayIndividualCountry from './pages/DisplayIndividualCountry';
 import { Reset } from './styles/Reset';
 import { GlobalStyle } from './styles/Global';
+import FlagsContextProvider from './context/FlagsContext';
 
 function App() {
     const [colorTheme, setColorTheme] = useState('light');
-    const [alphaNameArr, setAlphaNameArr] = useState([]);
 
-    console.log(alphaNameArr);
     const getColorMode = (mode) => {
         setColorTheme(mode);
     };
 
-    const arrOfAlpha3CodeAndName = (data) => {
-        const alphaNameArr = data.map((country) => {
-            const { alpha3Code, name } = country;
-            return { [alpha3Code]: name };
-        });
-
-        return alphaNameArr;
-    };
-
-    const memoizedCallback = useCallback((data) => {
-        const newArr = arrOfAlpha3CodeAndName(data);
-        setAlphaNameArr(newArr);
-    }, []);
-    // const arrCodeName = arrOfAlpha3CodeAndName(data);
-
     return (
-        <>
+        <FlagsContextProvider>
             <Reset />
             <GlobalStyle colorMode={colorTheme} />
             <Header
@@ -42,22 +26,15 @@ function App() {
             />
             <MainStyled>
                 <Routes>
-                    <Route
-                        path='/'
-                        element={<AllCountries getData={memoizedCallback} />}
-                    />
+                    <Route path='/' element={<AllCountries />} />
                     <Route
                         path=':name'
-                        element={
-                            <DisplayIndividualCountry
-                                codeNameArr={alphaNameArr}
-                            />
-                        }
+                        element={<DisplayIndividualCountry />}
                     />
                     <Route path='*' element={<p>There's nothing here!</p>} />
                 </Routes>
             </MainStyled>
-        </>
+        </FlagsContextProvider>
     );
 }
 

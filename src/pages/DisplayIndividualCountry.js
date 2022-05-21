@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
@@ -5,10 +6,13 @@ import { HiOutlineArrowLeft } from 'react-icons/hi';
 import useAxios from '../hooks/useAxios';
 import Spinner from '../components/Spinner';
 import Error from '../components/Error';
+import { FlagsContext } from './../context/FlagsContext';
 
-function DisplayIndividualCountry({ codeNameArr }) {
+function DisplayIndividualCountry() {
     const { name: country } = useParams();
     const navigate = useNavigate();
+    const { data: contextData } = useContext(FlagsContext);
+    const { alphaName } = contextData;
     const { data, error, isLoading } = useAxios(
         'https://restcountries.com/v2',
         `/name/${country}`,
@@ -17,19 +21,10 @@ function DisplayIndividualCountry({ codeNameArr }) {
         }
     );
 
-    const getFullCountryName = (code, codeNameArray = []) => {
-        const codeNameObj = codeNameArray.find((element) => {
-            const [key] = Object.keys(element);
-            return key === code;
-        });
-        const [value] = Object.values(codeNameObj);
-        return value;
-    };
-
     const renderBorders = (borders = []) => {
         if (borders.length > 0) {
             return borders.map((border, index) => {
-                const fullName = getFullCountryName(border, codeNameArr);
+                const fullName = alphaName[border];
                 return (
                     <Link to={`../${fullName}`} key={index}>
                         {fullName}
