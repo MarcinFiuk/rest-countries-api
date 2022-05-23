@@ -89,7 +89,7 @@ function DisplayIndividualCountry() {
                                         </FlagWrapper>
                                         <TextWrapper>
                                             <TitleWrapper>
-                                                <h3>{name}</h3>
+                                                <h2>{name}</h2>
                                             </TitleWrapper>
                                             <InfoColumns>
                                                 <FirstInfoColumn>
@@ -178,50 +178,51 @@ function DisplayIndividualCountry() {
 }
 
 const MainWrapper = styled.div`
-    padding-inline: clamp(1.75rem, 0.6rem + 4.9vw, 5rem);
     padding-block: clamp(2.5rem, 1.4rem + 4.5vw, 5rem);
+    padding-inline: clamp(1.75rem, 0.6rem + 4.9vw, 5rem);
 
     button,
     a {
         background-color: var(--elementColor);
         color: var(--textColor);
+        transition: all 0.3s ease-in;
     }
 
     a {
+        border-radius: 0.125em;
+        box-shadow: 0px 0px 4px 1px hsla(0, 0%, 0%, 0.1);
+        padding-block: 0.3125rem;
+        padding-inline: 1.625rem;
         text-decoration: none;
-        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
-        border-radius: 2px;
-        padding-block: 5px;
-        padding-inline: 27px;
     }
 
     button {
-        display: flex;
-        justify-content: center;
         align-items: center;
-        gap: 10px;
+        border-radius: 0.375em;
         border: none;
         box-shadow: 0px 0px 7px hsla(0, 0%, 0%, 0.29);
-        border-radius: 6px;
-        font-weight: var(--fontWeight-300);
+        display: flex;
         font-size: 1rem;
-        line-height: 20px;
-        padding-block: 10px;
+        font-weight: var(--fontWeight-300);
+        gap: 10px;
+        justify-content: center;
+        line-height: 1.25rem;
+        padding-block: 0.625rem;
         padding-inline: 2rem;
     }
 `;
 
 const CountryWrapper = styled.div`
+    align-items: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     gap: 44px;
     margin-top: clamp(4rem, 3.6rem + 1.8vw, 5rem);
 
     p {
-        font-weight: var(--fontWeight-300);
         font-size: 0.875rem;
+        font-weight: var(--fontWeight-300);
         line-height: 1rem;
         margin-bottom: 0.5rem;
 
@@ -232,24 +233,24 @@ const CountryWrapper = styled.div`
 `;
 
 const FlagWrapper = styled.div`
-    min-width: 320px;
-    max-width: 560px;
-    width: 100%;
     aspect-ratio: 320/229;
-    flex: 1;
     background: #808080;
+    border-radius: 0.625em;
     box-shadow: 0px 0px 14px 4px hsla(0, 0%, 0%, 0.03);
-    border-radius: 10px;
+    flex: 1;
+    max-width: 35rem;
+    min-width: 20rem;
     overflow: hidden;
+    width: 100%;
 
     img {
-        width: 100%;
         height: 100%;
+        width: 100%;
     }
 `;
 
 const TextWrapper = styled.div`
-    @media (min-width: 810px) {
+    @media (min-width: 50rem) {
         max-width: 50%;
     }
 `;
@@ -262,11 +263,11 @@ const InfoColumns = styled.div`
     display: flex;
     flex-direction: column;
 
-    @media (min-width: 992px) {
-        flex-direction: row;
-        justify-content: space-between;
+    @media (min-width: 62rem) {
         align-items: center;
-        gap: 2rem;
+        flex-direction: row;
+        gap: 32px;
+        justify-content: space-between;
     }
 `;
 
@@ -275,22 +276,22 @@ const FirstInfoColumn = styled.div``;
 const SecondInfoColumn = styled.div`
     margin-top: 2rem;
 
-    @media (min-width: 992px) {
+    @media (min-width: 62rem) {
         margin-top: 0;
     }
 `;
 
 const BorderWrapper = styled.div`
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 16px;
     margin-top: clamp(2rem, 1.2rem + 3.4vw, 4.25rem);
-    gap: 1rem;
 
     div {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 16px;
     }
 `;
 

@@ -10,7 +10,7 @@ function Country({ country }) {
                 <img src={png} alt={'flag of ' + name} />
             </FlagWrapper>
             <TextWrapper>
-                <h3>{name}</h3>
+                <h2>{name}</h2>
                 <p>
                     <BoldWrapper>Population:</BoldWrapper>{' '}
                     {population.toLocaleString()}
@@ -27,22 +27,23 @@ function Country({ country }) {
 }
 
 const Wrapper = styled.div`
+    background-color: var(--elementColor);
+    border-radius: 0.3125em;
+    box-shadow: 0px 0px 7px 2px hsla(0, 0%, 0%, 0.03);
     justify-self: center;
     max-width: 20rem;
-    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.03);
-    border-radius: 5px;
-    background-color: var(--elementColor);
     overflow: hidden;
+    transition: background-color 0.3s ease-in;
 `;
 
 const FlagWrapper = styled.div`
-    max-width: 246px;
-    width: 100%;
     aspect-ratio: 246/160;
+    max-width: 15.375rem;
+    width: 100%;
 
     img {
-        width: 100%;
         height: 100%;
+        width: 100%;
     }
 `;
 
@@ -55,8 +56,8 @@ const TextWrapper = styled.div`
     }
 
     p {
-        font-weight: var(--fontWeight-300);
         font-size: 0.875rem;
+        font-weight: var(--fontWeight-300);
         line-height: 1rem;
         margin-bottom: 0.5rem;
 

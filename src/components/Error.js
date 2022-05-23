@@ -15,12 +15,12 @@ const Wrapper = styled.div`
     min-height: 25vh;
 
     p {
-        text-align: center;
+        font-size: clamp(0.875rem, 0.7rem + 0.9vw, 1.5rem);
         font-weight: var(--fontWeight-800);
-        font-size: clamp(0.875rem, 0.65rem + 0.94vw, 1.5rem);
         line-height: 1.125rem;
-        text-transform: capitalize;
         padding-block: 1rem;
+        text-align: center;
+        text-transform: capitalize;
     }
 `;
 

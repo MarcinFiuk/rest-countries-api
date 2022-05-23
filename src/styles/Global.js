@@ -18,45 +18,32 @@ export const GlobalStyle = createGlobalStyle`
 --svgFill :${({ colorMode }) =>
     colorMode === 'light' ? 'transparent' : 'hsl(0, 0%, 100%)'};
 --inputColor :${({ colorMode }) =>
-    colorMode === 'light' ? 'hsl(0, 0%, 52%)' : 'hsl(0, 0%, 100%)'};
-/* --svgFill :{({ colorMode }) => */
-    /* colorMode === 'light' ? 'transparent' : 'hsl(0, 0%, 100%)'}; */
-/* --svgFill :{({ colorMode }) => */
-    /* colorMode === 'light' ? 'transparent' : 'hsl(0, 0%, 100%)'}; */
-//_____________
-/* --darkBlue: hsl(209, 23%, 22%);// (Dark Mode Elements) */
-/* --veryDarkBlue-1 : hsl(207, 26%, 17%); //(Dark Mode Background)
---veryDarkBlue-2: hsl(200, 15%, 8%); // (Light Mode Text)!!!!!!!!!!!!
---darkGray: hsl(0, 0%, 52%);// (Light Mode Input)
---veryLightGray: hsl(0, 0%, 98%);// (Light Mode Background)
---white: hsl(0, 0%, 100%);// (Dark Mode Text & Light Mode Elements)
---lightGray:hsl(0,0%,77%);//placeholder Light Mode */
+    colorMode === 'light' ? 'hsl(0, 0%, 77%)' : 'hsl(0, 0%, 100%)'};
 };
 
 body{
-    font-family: 'Nunito Sans', sans-serif;
-    max-width:1440px;
-    margin-inline:auto;
-    color: var(--textColor);
     background-color: var(--backgroundColor);
-    transition: all 0.3s linear;
+    color: var(--textColor);
+    font-family: 'Nunito Sans', sans-serif;
+    margin-inline: auto;
+    max-width: 90rem;
+    transition: all 0.3s ease-in;
 }
 
 #root{
-    height:100vh;
+    height: 100vh;
 }
 
 h1{
-    font-weight:var(--fontWeight-800);
     font-size: clamp(0.875rem, 0.65rem + 0.94vw, 1.5rem);;
+    font-weight: var(--fontWeight-800);
     line-height: 1.125rem;
 
 }
 
-h3{
+h2{
     font-size:1.125rem;
     font-weight:var(--fontWeight-800);
     line-height: 1.625rem;
 }
-
 `;

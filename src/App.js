@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 
@@ -43,12 +43,12 @@ const MainStyled = styled.main`
     flex-direction: column;
 
     & > p {
-        text-align: center;
-        font-weight: var(--fontWeight-800);
         font-size: clamp(0.875rem, 0.65rem + 0.94vw, 1.5rem);
+        font-weight: var(--fontWeight-800);
         line-height: 1.125rem;
-        text-transform: capitalize;
         padding-block: 5rem;
+        text-align: center;
+        text-transform: capitalize;
     }
 `;
 

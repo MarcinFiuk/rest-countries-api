@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { FiMoon } from 'react-icons/fi';
 
@@ -15,7 +16,9 @@ function Header({ getColorTheme, theme }) {
 
     return (
         <HeaderStyled>
-            <h1>Where in the world?</h1>
+            <Link to='/'>
+                <h1>Where in the world?</h1>
+            </Link>
             <button onClick={changeColorModeHandler}>
                 <span>
                     <StyledIcon />
@@ -27,36 +30,42 @@ function Header({ getColorTheme, theme }) {
 }
 
 const HeaderStyled = styled.header`
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     background: var(--elementColor);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.06);
+    display: flex;
+    justify-content: space-between;
     padding-block: clamp(
         1.5rem,
-        2.18rem + -0.75vw,
+        2.2rem + -0.7vw,
         2rem
     ); //reverse padding - mobile bigger that desktop
-    padding-inline: clamp(1rem, -0.45rem + 6vw, 5rem);
-    transition: background-color 0.3s linear;
+    padding-inline: clamp(1rem, -0.4rem + 6vw, 5rem);
+    transition: background-color 0.3s ease-in;
 
     button {
-        display: flex;
         align-items: center;
         background-color: transparent;
         border: none;
-        padding: 0;
-        font-weight: var(--fontWeight-600);
-        font-size: clamp(0.75rem, 0.66rem + 0.38vw, 1rem);
-        line-height: 1rem;
         color: inherit;
+        display: flex;
+        font-size: clamp(0.75rem, 0.66rem + 0.38vw, 1rem);
+        font-weight: var(--fontWeight-600);
+        line-height: 1rem;
+        padding: 0;
+    }
+
+    a {
+        color: unset;
+        text-decoration: none;
     }
 `;
 
 const StyledIcon = styled(FiMoon)`
-    vertical-align: middle;
     fill: var(--svgFill);
     margin-right: 0.5rem;
+    transition: fill 0.3s ease-in;
+    vertical-align: middle;
 `;
 
 export default Header;
