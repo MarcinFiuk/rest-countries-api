@@ -48,6 +48,14 @@ function DisplayIndividualCountry() {
         return 'unknown';
     };
 
+    const renderCurrency = (currency = []) => {
+        if (currency.length > 0) {
+            return currency[0].name;
+        }
+
+        return 'country does not have an official currency';
+    };
+
     const returnHandle = () => {
         return navigate(-1);
     };
@@ -136,8 +144,9 @@ function DisplayIndividualCountry() {
                                                         <BoldWrapper>
                                                             Currencies:&nbsp;
                                                         </BoldWrapper>
-
-                                                        {currencies[0].name}
+                                                        {renderCurrency(
+                                                            currencies
+                                                        )}
                                                     </p>
                                                     <p>
                                                         <BoldWrapper>
