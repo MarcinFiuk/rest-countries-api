@@ -21,7 +21,7 @@ const SpinnerStyled = styled.div`
         animation: ${AAA} 1.2s linear infinite;
         border: 0.5rem solid var(--textColor);
         border-color: var(--textColor) transparent; //NOTE:border-color overwrite color assigned in border shortcut
-        border-radius: 50%;
+        border-radius: var(--border-radius-0);
         content: ' ';
         display: block;
         height: 5.625rem;

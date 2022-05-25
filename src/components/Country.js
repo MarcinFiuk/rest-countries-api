@@ -28,7 +28,7 @@ function Country({ country }) {
 
 const Wrapper = styled.div`
     background-color: var(--elementColor);
-    border-radius: 0.3125em;
+    border-radius: var(--border-radius-2);
     box-shadow: 0px 0px 7px 2px hsla(0, 0%, 0%, 0.03);
     justify-self: center;
     max-width: 20rem;

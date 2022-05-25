@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Country from './Country';
 
 function Countries({ countriesSlice }) {
+    console.log(countriesSlice);
     const countries = countriesSlice.map((country) => (
         <LinkStyled key={country.name} to={`/${country.name}`}>
             <Country key={country.name} country={country} />

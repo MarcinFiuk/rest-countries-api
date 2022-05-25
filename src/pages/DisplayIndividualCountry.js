@@ -198,7 +198,7 @@ const MainWrapper = styled.div`
     }
 
     a {
-        border-radius: 0.125em;
+        border-radius: var(--border-radius-1);
         box-shadow: 0px 0px 4px 1px hsla(0, 0%, 0%, 0.1);
         padding-block: 0.3125rem;
         padding-inline: 1.625rem;
@@ -207,7 +207,7 @@ const MainWrapper = styled.div`
 
     button {
         align-items: center;
-        border-radius: 0.375em;
+        border-radius: var(--border-radius-2);
         border: none;
         box-shadow: 0px 0px 7px hsla(0, 0%, 0%, 0.29);
         display: flex;
@@ -244,7 +244,7 @@ const CountryWrapper = styled.div`
 const FlagWrapper = styled.div`
     aspect-ratio: 320/229;
     background: #808080;
-    border-radius: 0.625em;
+    border-radius: var(--border-radius-3);
     box-shadow: 0px 0px 14px 4px hsla(0, 0%, 0%, 0.03);
     flex: 1;
     max-width: 35rem;

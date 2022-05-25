@@ -1,21 +1,9 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 
+import { debounce } from './../helpers/search.helpers';
+
 function SearchBar({ getRegion, getCountry }) {
-    const debounce = (func, timeout = 300) => {
-        let timerId;
-
-        return (...args) => {
-            if (timerId) {
-                clearTimeout(timerId);
-            }
-
-            timerId = setTimeout(() => {
-                func(...args);
-            }, timeout);
-        };
-    };
-
     const setRegion = (e) => {
         getRegion(e.target.value);
     };
@@ -40,7 +28,7 @@ function SearchBar({ getRegion, getCountry }) {
             >
                 <option value=''>Filter By Region</option>
                 <option value='africa'>Africa</option>
-                <option value='america'>America</option>
+                <option value='americas'>Americas</option>
                 <option value='asia'>Asia</option>
                 <option value='europe'>Europe</option>
                 <option value='oceania'>Oceania</option>
@@ -62,7 +50,7 @@ const Wrapper = styled.div`
 `;
 
 const PositioningElement = styled.div`
-    border-radius: 0.3125em;
+    border-radius: var(--border-radius-2);
     box-shadow: 0px 2px 9px hsla(0, 0%, 0%, 0.06);
     max-width: 30rem;
     position: relative;
@@ -100,7 +88,7 @@ const SearchIconStyled = styled(AiOutlineSearch)`
 
 const Select = styled.select`
     background: var(--elementColor);
-    border-radius: 0.3125em;
+    border-radius: var(--border-radius-2);
     border: none;
     box-shadow: 0px 2px 9px hsla(0, 0%, 0%, 0.06);
     color: var(--textColor);
