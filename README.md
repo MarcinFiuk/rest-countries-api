@@ -38,3 +38,7 @@ I learnt a few new concepts:
 
 -   Frontend Mentor - [@MarcinFiuk](https://www.frontendmentor.io/profile/MarcinFiuk)
 -   Twitter - [@marcin_fiuk](https://twitter.com/marcin_fiuk)
+
+## Acknowledgments
+
+Thank you to my mentor [Alex](https://www.linkedin.com/in/alexrohleder/) for feedback and guidance on this project.
